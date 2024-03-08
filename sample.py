@@ -74,6 +74,33 @@ def KosarajuExample():
             dfs2(reversed_g, node, visited, scc)
 
 
+# union find
+def UnionFind(n):
+    parents = [i for i in range(n)]
+    rank = [1] * n # or size
+    
+    def find(x):
+        if parents[x] != x: parents[x] = find(parents[x])
+        return parents[x]
+    
+    def union(x,y):
+        xroot, yroot = find(x),find(y)
+        if xroot == yroot: return 
+        parents[xroot] = yroot
+    
+    def union_by_rank(x,y):
+        xroot, yroot = find(x),find(y)
+        if xroot == yroot: return 
+        if rank[xroot] < rank[yroot]:
+            xroot, yroot = yroot, xroot
+        parents[yroot] = xroot
+        rank[xroot] = max(rank[xroot], rank[yroot]+1)
+
+
+
+
+
+
 # Bit Tricks
 
 def bit_tricks(num):
