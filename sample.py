@@ -1,10 +1,9 @@
 
 import collections
 
-# binary search template
 def can_solve_with_mid(mid): pass
 
-# Binary Search + Koko eats bananas
+# Binary Search Template -> Koko eats bananas
 def bin_search(arr):
     lo, hi = 0, len(arr)
     ans = lo
@@ -17,8 +16,11 @@ def bin_search(arr):
             hi = mid-1
     return ans
 
-# Topological Sort
+# 1D dp -> House Robber
 
+# 2D dp -> Edit distance
+
+# Topological Sort
 def topo_sort(edges, n):
     in_deg = [0] * n
     g = {i: set() for i in range(n)}
@@ -38,7 +40,6 @@ def topo_sort(edges, n):
 
 
 # Kosaraju
-                
 def KosarajuExample():
     """
     Run DFS on graph, populate stack
@@ -96,6 +97,16 @@ def UnionFind(n):
         parents[yroot] = xroot
         rank[xroot] = max(rank[xroot], rank[yroot]+1)
 
+
+# network delay time
+def BellmanFord(n, source):
+    edges = [...]
+    dist = {i: float('inf') for i in range(n)}
+    dist[source] = 0
+    for _ in range(n):
+        for s,t, weight in edges:
+            dist[t] = min(dist[t], dist[s] + weight)
+    
 
 
 
