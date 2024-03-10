@@ -20,7 +20,7 @@ def bin_search(arr):
 
 # 2D dp -> Edit distance
 
-# Topological Sort
+# Topological Sort -> Courses
 def topo_sort(edges, n):
     in_deg = [0] * n
     g = {i: set() for i in range(n)}
@@ -37,7 +37,6 @@ def topo_sort(edges, n):
             in_deg[neigh] -= 1
             if in_deg[neigh] == 0:
                 q.append(neigh)
-
 
 # Kosaraju
 def KosarajuExample():
@@ -74,7 +73,6 @@ def KosarajuExample():
             scc = []
             dfs2(reversed_g, node, visited, scc)
 
-
 # union find
 def UnionFind(n):
     parents = [i for i in range(n)]
@@ -108,9 +106,15 @@ def BellmanFord(n, source):
             dist[t] = min(dist[t], dist[s] + weight)
     
 
+# kruskals/prims -> Minimum spanning tree
 
-
-
+# dijkstra
+            
+# bfs shortest path
+            
+# sliding window
+            
+# two pointer
 
 # Bit Tricks
 
