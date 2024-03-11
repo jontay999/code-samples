@@ -110,15 +110,44 @@ def BellmanFord(n, source):
 
 # dijkstra
             
-# bfs shortest path
-
             
+# bfs shortest path
+def BFS():
+    start, end = 0, 10
+    graph = {}
+    q = collections.deque([start])
+    visited = {start}
+    count = 0
+    while q:
+        c = len(q)
+        for _ in range(c):
+            node = q.popleft()
+            for neigh in graph[node]:
+                if neigh in visited: continue
+                q.append(neigh)
+        c += 1
+    return count
+
 # sliding window
             
 # two pointer
 
-# Bit Tricks
+# monotonic stack
+# e.g. find idx of the next greatest element
+def mono_stack(arr):
+    # idx of next element greater than current value
+    next_greater = [0 for _ in arr]
+    stack = []
 
+    for i in range(len(arr)):
+        while stack and arr[stack[-1]] < arr[i]:
+            top = stack.pop()
+            next_greater[top] = i
+        stack.append(i)
+    return next_greater
+
+
+# Bit Tricks
 def bit_tricks(num):
     set_bit_pos, unset_bit_pos, toggle_bit_pos, check_bit_pos = 1,1,1
     # all 0-indexed
