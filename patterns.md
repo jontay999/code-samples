@@ -1,3 +1,4 @@
+```py
 
 import collections
 
@@ -77,19 +78,19 @@ def KosarajuExample():
 def UnionFind(n):
     parents = [i for i in range(n)]
     rank = [1] * n # or size
-    
+
     def find(x):
         if parents[x] != x: parents[x] = find(parents[x])
         return parents[x]
-    
+
     def union(x,y):
         xroot, yroot = find(x),find(y)
-        if xroot == yroot: return 
+        if xroot == yroot: return
         parents[xroot] = yroot
-    
+
     def union_by_rank(x,y):
         xroot, yroot = find(x),find(y)
-        if xroot == yroot: return 
+        if xroot == yroot: return
         if rank[xroot] < rank[yroot]:
             xroot, yroot = yroot, xroot
         parents[yroot] = xroot
@@ -104,17 +105,17 @@ def BellmanFord(n, source):
     for _ in range(n):
         for s,t, weight in edges:
             dist[t] = min(dist[t], dist[s] + weight)
-    
+
+
 # kruskals/prims -> Minimum spanning tree
 
-
 # dijkstra
-            
+
 # bfs shortest path
 
-            
+
 # sliding window
-            
+
 # two pointer
 
 # Bit Tricks
@@ -124,7 +125,7 @@ def bit_tricks(num):
     # all 0-indexed
 
     # set bit
-    num |= 1<<set_bit_pos
+    num |= 1 << set_bit_pos
 
     # unset bit
     num &= ~(1 << unset_bit_pos)
@@ -142,7 +143,24 @@ def bit_tricks(num):
 
     # Count number of set bits
     count = 0
-    number = 10
     while number:
         number &= number-1
         count += 1
+```
+
+```py
+
+# e.g. find idx of the next greatest element
+def mono_stack(arr):
+    # idx of next element greater than current value
+    next_greater = [0 for _ in arr]
+    stack = []
+
+    for i in range(len(arr)):
+        while stack and arr[stack[-1]] < arr[i]:
+            top = stack.pop()
+            next_greater[top] = i
+        stack.append(i)
+    return next_greater
+
+```
