@@ -1,5 +1,6 @@
 
 import collections
+from heapq import heappush, heappop, heapify
 
 def can_solve_with_mid(mid): pass
 
@@ -106,10 +107,50 @@ def BellmanFord(n, source):
             dist[t] = min(dist[t], dist[s] + weight)
     
 # kruskals/prims -> Minimum spanning tree
+def Prims(g):
+    # where g[a] = [(weight, neighbor)...]
+    v, h, edges = {0},[],[]
+    for w,b in g[0]:
+        heappush(h, (w,b,0))
+
+    while len(v) != len(g):
+        w,b,a = heappop(h)
+        if b in v: continue
+        v.add(b)
+        edges.append((w,b,a))
+        for w2, b2 in g[b]:
+            if b2 in v: continue
+            heappush(h, (w2,b2, b))
+    total_weight = sum(w for w,b,a in edges)
+    return edges, total_weight
+
+# Segment Trees
+# answers queries of range sums from index i to j
+# supports updates
+class NumArray:
+    def __init__(self, nums):
+        self.arr = [0] * len(nums)
+        self.BIT = [0] * (len(nums) + 1)
+        for i, n in enumerate(nums): self.update(i, n)
+        self.sumRange = lambda i, j: self.Sum(j + 1) - self.Sum(i)
+
+    def update(self, i, val):
+        diff, self.arr[i] = val - self.arr[i], val
+        i += 1
+        while i < len(self.BIT):
+            self.BIT[i] += diff
+            i += (i & -i) # to next
+
+    def Sum(self, k):
+        res = 0
+        while k:
+            res += self.BIT[k]
+            k -= (k & -k) # to parent
+        return res
 
 
 # dijkstra
-            
+# TBD
             
 # bfs shortest path
 def BFS():
@@ -128,9 +169,7 @@ def BFS():
         c += 1
     return count
 
-# sliding window
-            
-# two pointer
+
 
 # monotonic stack
 # e.g. find idx of the next greatest element
