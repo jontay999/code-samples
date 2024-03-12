@@ -83,6 +83,23 @@ print(1,2,3, sep="-") # -> 1-2-3
 f"Formatted: {1+1}" # -> Formatted: 2
 ```
 
+```py
+from functools import cache
+
+memo = {}
+def fib(n):
+    if n <= 2: return 1
+    if n in memo: return memo[n]
+    memo[n] = fib(n-1) + fib(n-2)
+    return memo[n]
+
+@cache
+def fib(n):
+    if n <= 2: return 1
+    return fib(n-1) + fib(n-2)
+
+```
+
 ### List
 
 ```py
@@ -450,4 +467,27 @@ def solution(param1, param2):
     ...
     raise f"Param 1:{param1}, Param2: {param2}"
     return
+```
+
+```py
+import gc
+gc.collect()
+
+import gc
+
+s = []
+t = []
+u = []
+
+for i in range(333333333):
+   s.append("More")
+gc.collect()
+
+for j in range(333333333):
+   t.append("More")
+gc.collect()
+
+for k in range(333333334):
+   u.append("More")
+gc.collect()
 ```
